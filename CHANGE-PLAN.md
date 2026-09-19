@@ -16,7 +16,7 @@ Originally developed at Bigpoint. Published here with Bigpoint's permission for 
 ## Planned changes
 
 - [x] Tag and publish `v0.0.3` with the Release workflow.
-- [ ] Tag and publish `v0.1.0` with the Release workflow.
+- [x] Tag and publish `v0.1.0` with the Release workflow.
 
 ## Notes and ideas
 
