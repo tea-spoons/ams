@@ -1,0 +1,16 @@
+{
+    "name": "TeaSpoons.AMS",
+    "rootNamespace": "TeaSpoons.AMS",
+    "references": [
+        "GUID:4b5b79d9ea689ad42946c84b86fa6e8f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
