@@ -440,9 +440,11 @@ https://github.com/tea-spoons/ams.git
 
 Pin a release by appending a tag, for example `#v0.1.0`.
 
-### Optional packages
+### Dependencies
 
-This package works on its own. It uses the packages below when your project has them (Unity detects them automatically) and falls back to plain behaviour when it does not.
+None. AMS works on its own and installs from the git URL without adding anything else.
+
+It uses the optional package below when your project has it (Unity detects it automatically) and falls back to plain behaviour when it does not.
 
 | Package | Used for |
 |---|---|
