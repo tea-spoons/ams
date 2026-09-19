@@ -105,7 +105,7 @@ namespace TeaSpoons.AMS
 
             if (!rootProxy.IsRoot)
             {
-                Logs.AMS?.Warning?.Log("Only register root proxies with AmsTicker. Children are ticked automatically.");
+                Logs.Warning("Only register root proxies with AmsTicker. Children are ticked automatically.");
                 return;
             }
 

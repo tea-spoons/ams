@@ -37,7 +37,7 @@ namespace TeaSpoons.AMS
         {
             if (calculator is null)
             {
-                Logs.AMS?.Error?.Log("AmsValues ctor; Can't create AmsValues with a null calculator");
+                Logs.Error("AmsValues ctor; Can't create AmsValues with a null calculator");
                 throw new ArgumentNullException(nameof(calculator));
             }
             
@@ -53,7 +53,7 @@ namespace TeaSpoons.AMS
             permanents = ValueSet.CalculateParameters(calculator);
             modifiers = ValueSet.GetPercentageMapSnapshot();
 
-            Logs.AMS?.Debug?.Log($"AmsValues.Calculate completed. permanents={permanents.Count}, modifiers={modifiers.Count}. Context={context ?? "<null>"}");
+            Logs.Debug($"AmsValues.Calculate completed. permanents={permanents.Count}, modifiers={modifiers.Count}. Context={context ?? "<null>"}");
         }
 
         #region Permanents
@@ -73,7 +73,7 @@ namespace TeaSpoons.AMS
         {
             if (attribute is null)
             {
-                Logs.AMS?.Warning?.Log($"GetPermanent: attribute is null, returning fallback value {fallback}");
+                Logs.Warning($"GetPermanent: attribute is null, returning fallback value {fallback}");
                 return fallback;
             }
 
@@ -82,7 +82,7 @@ namespace TeaSpoons.AMS
                 return result;
             }
 
-            Logs.AMS?.Warning?.Log($"GetPermanent miss: {attribute.Name} (id={attribute.Id}) => fallback={fallback}. Context={context ?? "<null>"}");
+            Logs.Warning($"GetPermanent miss: {attribute.Name} (id={attribute.Id}) => fallback={fallback}. Context={context ?? "<null>"}");
 
             return fallback;
         }
@@ -94,7 +94,7 @@ namespace TeaSpoons.AMS
         {
             if (attribute is not null) return permanents.TryGetValue(attribute.Id, out value);
             
-            Logs.AMS?.Warning?.Log("TryGetPermanent: attribute is null, returning default value");
+            Logs.Warning("TryGetPermanent: attribute is null, returning default value");
             value = default;
             return false;
         }
@@ -106,7 +106,7 @@ namespace TeaSpoons.AMS
         {
             if (attribute is null)
             {
-                Logs.AMS?.Error?.Log("GetPermanentOrThrow: attribute is null.");
+                Logs.Error("GetPermanentOrThrow: attribute is null.");
                 throw new ArgumentNullException(nameof(attribute));
             }
 
@@ -115,7 +115,7 @@ namespace TeaSpoons.AMS
                 return result;
             }
 
-            Logs.AMS?.Error?.Log(
+            Logs.Error(
                 $"GetPermanentOrThrow miss: {attribute.Name} (id={attribute.Id}). Context={context ?? "<null>"}");
             throw new KeyNotFoundException(
                 $"[AMS] Permanent value not found for attribute '{attribute.Name}' (id={attribute.Id}).");
@@ -132,7 +132,7 @@ namespace TeaSpoons.AMS
                 return calculator.ToLong(permanent, context);
             }
 
-            Logs.AMS?.Error?.Log(attribute is null
+            Logs.Error(attribute is null
                 ? $"GetPermanentLong: attribute is null, returning fallback value {fallback}"
                 : $"GetPermanentLong: failed to get corresponding value for attribute {attribute.Id}, returning fallback value {fallback}");
 
@@ -156,7 +156,7 @@ namespace TeaSpoons.AMS
         {
             if (attribute is null)
             {
-                Logs.AMS?.Warning?.Log($"GetModifier: attribute is null, returning fallback value {fallback}");
+                Logs.Warning($"GetModifier: attribute is null, returning fallback value {fallback}");
                 return fallback;
             }
 
@@ -165,7 +165,7 @@ namespace TeaSpoons.AMS
                 return rawPercent * 0.01;
             }
 
-            Logs.AMS?.Warning?.Log($"GetModifier miss: {attribute.Name} (id={attribute.Id}) => fallback={fallback}. Context={context ?? "<null>"}");
+            Logs.Warning($"GetModifier miss: {attribute.Name} (id={attribute.Id}) => fallback={fallback}. Context={context ?? "<null>"}");
             return fallback;
         }
 
@@ -173,7 +173,7 @@ namespace TeaSpoons.AMS
         {
             if (attribute is not null) return modifiers.TryGetValue(attribute.Id, out decimalValue);
             
-            Logs.AMS?.Warning?.Log("TryGetModifier: attribute is null, returning default value");
+            Logs.Warning("TryGetModifier: attribute is null, returning default value");
             decimalValue = default;
             return false;
         }
@@ -182,7 +182,7 @@ namespace TeaSpoons.AMS
         {
             if (attribute is null)
             {
-                Logs.AMS?.Error?.Log("GetModifierOrThrow: attribute is null.");
+                Logs.Error("GetModifierOrThrow: attribute is null.");
                 throw new ArgumentNullException(nameof(attribute));
             }
 
@@ -191,7 +191,7 @@ namespace TeaSpoons.AMS
                 return rawPercent * 0.01;
             }
 
-            Logs.AMS?.Error?.Log(
+            Logs.Error(
                 $"GetModifierOrThrow miss: {attribute.Name} (id={attribute.Id}). Context={context ?? "<null>"}");
             throw new KeyNotFoundException(
                 $"[AMS] Modifier not found for attribute '{attribute.Name}' (id={attribute.Id}).");
@@ -204,7 +204,7 @@ namespace TeaSpoons.AMS
         {
             if (attribute is null)
             {
-                Logs.AMS?.Warning?.Log($"GetModifierRaw: attribute is null, returning fallback value {fallback}");
+                Logs.Warning($"GetModifierRaw: attribute is null, returning fallback value {fallback}");
                 return fallback;
             }
 
@@ -213,7 +213,7 @@ namespace TeaSpoons.AMS
                 return rawPercent;
             }
 
-            Logs.AMS?.Warning?.Log($"GetModifierRawOr miss: {attribute.Name} (id={attribute.Id}) => fallback={fallback}. Context={context ?? "<null>"}");
+            Logs.Warning($"GetModifierRawOr miss: {attribute.Name} (id={attribute.Id}) => fallback={fallback}. Context={context ?? "<null>"}");
             return fallback;
         }
 
@@ -221,7 +221,7 @@ namespace TeaSpoons.AMS
         {
             if(attribute is not null) return modifiers.TryGetValue(attribute.Id, out rawPercent);
             
-            Logs.AMS?.Warning?.Log("TryGetModifierRaw: attribute is null, returning default value");
+            Logs.Warning("TryGetModifierRaw: attribute is null, returning default value");
             rawPercent = default;
             return false;
         }
@@ -230,7 +230,7 @@ namespace TeaSpoons.AMS
         {
             if (attribute is null)
             {
-                Logs.AMS?.Error?.Log("GetModifierRawOrThrow: attribute is null.");
+                Logs.Error("GetModifierRawOrThrow: attribute is null.");
                 throw new ArgumentNullException(nameof(attribute));
             }
 
@@ -239,7 +239,7 @@ namespace TeaSpoons.AMS
                 return rawPercent;
             }
 
-            Logs.AMS?.Error?.Log(
+            Logs.Error(
                 $"GetModifierRawOrThrow miss: {attribute.Name} (id={attribute.Id}). Context={context ?? "<null>"}");
             throw new KeyNotFoundException(
                 $"[AMS] Raw modifier not found for attribute '{attribute.Name}' (id={attribute.Id}).");
@@ -255,7 +255,7 @@ namespace TeaSpoons.AMS
         {
             if (attribute is null)
             {
-                Logs.AMS?.Warning?.Log($"GetCurrent: attribute is null, returning fallback value {fallback}");
+                Logs.Warning($"GetCurrent: attribute is null, returning fallback value {fallback}");
                 return fallback;
             }
 
@@ -264,7 +264,7 @@ namespace TeaSpoons.AMS
                 return value;
             }
 
-            Logs.AMS?.Warning?.Log(
+            Logs.Warning(
                 $"GetCurrentOr miss: {attribute.Name} (id={attribute.Id}) => fallback={fallback}. Context={context ?? "<null>"}");
             return fallback;
         }
@@ -273,7 +273,7 @@ namespace TeaSpoons.AMS
         {
             if(attribute is not null) return currents.TryGetValue(attribute.Id, out value);
             
-            Logs.AMS?.Warning?.Log("TryGetCurrent: attribute is null, returning default value");
+            Logs.Warning("TryGetCurrent: attribute is null, returning default value");
             value = default;
             return false;
         }
@@ -282,7 +282,7 @@ namespace TeaSpoons.AMS
         {
             if (attribute is null)
             {
-                Logs.AMS?.Error?.Log("GetModifierRawOrThrow: attribute is null.");
+                Logs.Error("GetModifierRawOrThrow: attribute is null.");
                 throw new ArgumentNullException(nameof(attribute));
             }
 
@@ -291,7 +291,7 @@ namespace TeaSpoons.AMS
                 return value;
             }
 
-            Logs.AMS?.Error?.Log(
+            Logs.Error(
                 $"GetCurrentOrThrow miss: {attribute.Name} (id={attribute.Id}). Context={context ?? "<null>"}");
             throw new KeyNotFoundException(
                 $"[AMS] Current value not found for attribute '{attribute.Name}' (id={attribute.Id}).");
@@ -316,7 +316,7 @@ namespace TeaSpoons.AMS
         {
             if (attribute is null)
             {
-                Logs.AMS?.Warning?.Log($"SetCurrent: attribute is null.");
+                Logs.Warning($"SetCurrent: attribute is null.");
                 return -1d;
             }
 
@@ -327,7 +327,7 @@ namespace TeaSpoons.AMS
                 return value;
             }
 
-            Logs.AMS?.Debug?.Log($"SetCurrent: {attribute.Name} (id={attribute.Id}) = {value} (was {existing}). Context={context ?? "<null>"}");
+            Logs.Debug($"SetCurrent: {attribute.Name} (id={attribute.Id}) = {value} (was {existing}). Context={context ?? "<null>"}");
 
             currents[attribute.Id] = value;
             return value;
@@ -336,7 +336,7 @@ namespace TeaSpoons.AMS
         public void ClearCurrents(string context = null)
         {
             currents.Clear();
-            Logs.AMS?.Debug?.Log($"ClearCurrents. Context={context ?? "<null>"}");
+            Logs.Debug($"ClearCurrents. Context={context ?? "<null>"}");
         }
 
         #endregion

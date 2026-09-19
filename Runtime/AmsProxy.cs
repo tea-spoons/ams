@@ -162,7 +162,7 @@
                 return;
             }
 
-            Logs.AMS?.Debug?.Log($"Added container: {container}");
+            Logs.Debug($"Added container: {container}");
 
             NotifyChanged(AmsChangedSource.Self);
             
@@ -178,7 +178,7 @@
                 return;
             }
 
-            Logs.AMS?.Debug?.Log($"Removed container: {container}");
+            Logs.Debug($"Removed container: {container}");
 
             NotifyChanged(AmsChangedSource.Self);
             

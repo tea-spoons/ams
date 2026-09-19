@@ -68,7 +68,7 @@
             };
             
             logs.Add(log);
-            Logs.AMS?.Debug?.Log(log.ToString());
+            Logs.Debug(log.ToString());
         }
 
         public IReadOnlyList<CalculationLog> GetLogs() => logs.AsReadOnly();

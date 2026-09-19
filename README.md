@@ -438,13 +438,17 @@ In Unity: **Window > Package Manager > + > Add package from git URL**, then ente
 https://github.com/tea-spoons/ams.git
 ```
 
-Pin a release by appending a tag, for example `#v0.0.3`.
+Pin a release by appending a tag, for example `#v0.1.0`.
 
-### Dependencies
+### Optional packages
 
-Unity cannot resolve git dependencies automatically, so add these to your project first:
+This package works on its own. It uses the packages below when your project has them (Unity detects them automatically) and falls back to plain behaviour when it does not.
 
-- `com.tea-spoons.logging` 1.3.8
+| Package | Used for |
+|---|---|
+| Logging (`com.tea-spoons.logging` 1.3.8+) | AMS writes its debug, warning and error messages through the `AMS` log category. Without it they go to the Unity console instead. |
+
+Without the Logging package, AMS logs with `UnityEngine.Debug`, prefixed with `[AMS]`, **only in the editor and in development builds**. The calls are compiled out of release builds, arguments included, so they cost nothing there. Errors that throw (for example division by zero) still throw; only the log line is removed.
 
 ## Change plan
 

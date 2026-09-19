@@ -2,7 +2,7 @@
     "name": "TeaSpoons.AMS",
     "rootNamespace": "TeaSpoons.AMS",
     "references": [
-        "GUID:4b5b79d9ea689ad42946c84b86fa6e8f"
+        "TeaSpoons.Logging"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -11,6 +11,12 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": [],
+    "versionDefines": [
+        {
+            "name": "com.tea-spoons.logging",
+            "expression": "1.3.8",
+            "define": "TEASPOONS_LOGGING"
+        }
+    ],
     "noEngineReferences": false
 }

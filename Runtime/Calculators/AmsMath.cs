@@ -17,7 +17,7 @@
                 return Math.Abs(value) < calculator.Epsilon;
             }
             
-            Logs.AMS?.Error?.Log("Calculator is null.");
+            Logs.Error("Calculator is null.");
             throw new ArgumentNullException(nameof(calculator));
         }
 
@@ -30,14 +30,14 @@
         {
             if (calculator is null)
             {
-                Logs.AMS?.Warning?.Log($"TryDivide failed (calculator is null): {a} / {b}. Context={context ?? "<null>"}");
+                Logs.Warning($"TryDivide failed (calculator is null): {a} / {b}. Context={context ?? "<null>"}");
                 result = default;
                 return false;
             }
 
             if (Math.Abs(b) < calculator.Epsilon)
             {
-                Logs.AMS?.Warning?.Log($"TryDivide failed (denominator near zero): {a} / {b}. Context={context ?? "<null>"}");
+                Logs.Warning($"TryDivide failed (denominator near zero): {a} / {b}. Context={context ?? "<null>"}");
                 result = default;
                 return false;
             }
@@ -53,7 +53,7 @@
         {
             if (calculator is null)
             {
-                Logs.AMS?.Warning?.Log($"DivideOr fallback used (calculator is null): {fallback}. Context={context ?? "<null>"}");
+                Logs.Warning($"DivideOr fallback used (calculator is null): {fallback}. Context={context ?? "<null>"}");
                 return fallback;
             }
 
@@ -62,7 +62,7 @@
                 return calculator.Divide(a, b, context);
             }
 
-            Logs.AMS?.Warning?.Log($"DivideOr fallback used (denominator near zero): {a} / {b} => {fallback}. Context={context ?? "<null>"}");
+            Logs.Warning($"DivideOr fallback used (denominator near zero): {a} / {b} => {fallback}. Context={context ?? "<null>"}");
             return fallback;
         }
 
@@ -79,7 +79,7 @@
             if (calculator is null)
             {
                 var fallback = fallbackFactory();
-                Logs.AMS?.Warning?.Log($"DivideOr(f) fallback used (calculator is null): {fallback}. Context={context ?? "<null>"}");
+                Logs.Warning($"DivideOr(f) fallback used (calculator is null): {fallback}. Context={context ?? "<null>"}");
                 return fallback;
             }
 
@@ -89,7 +89,7 @@
             }
             
             var divideOrFallback = fallbackFactory();
-            Logs.AMS?.Warning?.Log($"DivideOr(f) fallback used (denominator near zero): {a} / {b} => {divideOrFallback}. Context={context ?? "<null>"}");
+            Logs.Warning($"DivideOr(f) fallback used (denominator near zero): {a} / {b} => {divideOrFallback}. Context={context ?? "<null>"}");
             return divideOrFallback;
 
         }

@@ -26,7 +26,7 @@
                 return a / b;
             }
 
-            Logs.AMS?.Error?.Log($"Division by zero attempted: {a} / {b}. Context={context ?? "<null>"}");
+            Logs.Error($"Division by zero attempted: {a} / {b}. Context={context ?? "<null>"}");
             throw new DivideByZeroException($"AMS division by zero: {a} / {b}. Context={context ?? "<null>"}");
         }
 

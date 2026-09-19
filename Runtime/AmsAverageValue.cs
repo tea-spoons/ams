@@ -17,7 +17,7 @@ namespace TeaSpoons.AMS
         {
             if (stackCount <= 0)
             {
-                Logs.AMS?.Error?.Log(
+                Logs.Error(
                     $"AmsAverageValue ctor: stackCount must be > 0. stackCount={stackCount}, totalValue={totalValue}. Context={context ?? "<null>"}");
                 throw new InvalidDataException("[AMS] AmsAverageValue: stackCount must be a positive number.");
             }
@@ -50,7 +50,7 @@ namespace TeaSpoons.AMS
             var newStackCount = stackCount + StackCount;
             if (newStackCount <= 0)
             {
-                Logs.AMS?.Warning?.Log($"AmsAverageValue.AddAverage ignored: stackCount must be > 0. value={value}, " +
+                Logs.Warning($"AmsAverageValue.AddAverage ignored: stackCount must be > 0. value={value}, " +
                                        $"added stackCount={stackCount}, current stackCount={StackCount}. Context={context ?? "<null>"}");
                 return this;
             }
