@@ -1,6 +1,6 @@
 {
   "name": "com.tea-spoons.ams",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "displayName": "Attribute Modifier System",
   "description": "A hierarchical attribute management system for calculating game stats with support for absolute values, percentage modifiers, weighted averages, and parent-child value propagation.",
   "unity": "6000.3",
